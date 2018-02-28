@@ -6,7 +6,7 @@ using System.Collections.Generic;
 
 namespace Microsoft.AspNetCore.SignalR
 {
-    public class HubOptions<THub> where THub : Hub
+    public class HubOptions
     {
         /// <summary>
         /// The default keep-alive interval. This is set to exactly half of the default client timeout window,
@@ -26,6 +26,6 @@ namespace Microsoft.AspNetCore.SignalR
         /// </remarks>
         public TimeSpan KeepAliveInterval { get; set; } = DefaultKeepAliveInterval;
 
-        public List<string> SupportedProtocols { get; set; } = new List<string> { DefaultProtocols.JSONProtocol };
+        public List<string> SupportedProtocols { get; } = new List<string>();
     }
 }

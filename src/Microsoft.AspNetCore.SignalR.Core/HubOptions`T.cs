@@ -3,8 +3,5 @@
 
 namespace Microsoft.AspNetCore.SignalR
 {
-    public static class DefaultProtocols
-    {
-        public static readonly string JSONProtocol = "json";
-    }
+    public class HubOptions<THub> : HubOptions where THub : Hub { }
 }

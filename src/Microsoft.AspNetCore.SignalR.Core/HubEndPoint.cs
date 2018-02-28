@@ -31,6 +31,12 @@ namespace Microsoft.AspNetCore.SignalR
             _protocolResolver = protocolResolver;
             _lifetimeManager = lifetimeManager;
             _loggerFactory = loggerFactory;
+
+            if (hubOptions.Value.SupportedProtocols.Count == 0)
+            {
+                throw new InvalidOperationException("There are no supported protocols");
+            }
+
             _hubOptions = hubOptions.Value;
             _logger = loggerFactory.CreateLogger<HubEndPoint<THub>>();
             _userIdProvider = userIdProvider;
