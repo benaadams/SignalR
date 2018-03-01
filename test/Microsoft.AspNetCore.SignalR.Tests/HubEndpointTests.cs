@@ -1328,7 +1328,7 @@ namespace Microsoft.AspNetCore.SignalR.Tests
             var serviceProvider = HubEndPointTestUtils.CreateServiceProvider(services =>
             {
                 services.AddSignalR()
-                .AddHubOptions<StreamingHub>(options =>
+                .AddGlobalHubOptions(options =>
                 {
                     options.SupportedProtocols.Add("messagepack");
                 });

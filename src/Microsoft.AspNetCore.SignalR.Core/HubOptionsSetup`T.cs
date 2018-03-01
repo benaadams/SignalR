@@ -2,6 +2,7 @@
 // Licensed under the Apache License, Version 2.0. See License.txt in the project root for license information.
 
 using Microsoft.Extensions.Options;
+using System.Collections.Generic;
 
 namespace Microsoft.AspNetCore.SignalR
 {
@@ -15,7 +16,14 @@ namespace Microsoft.AspNetCore.SignalR
 
         public void Configure(HubOptions<THub> options)
         {
-            options.SupportedProtocols.AddRange(_hubOptions.SupportedProtocols);
+            if(_hubOptions.SupportedProtocols == null)
+            {
+                options.SupportedProtocols = new List<string>();
+            }
+            else
+            {
+                options.SupportedProtocols = _hubOptions.SupportedProtocols;
+            }
             options.KeepAliveInterval = _hubOptions.KeepAliveInterval;
             options.NegotiateTimeout = _hubOptions.NegotiateTimeout;
         }

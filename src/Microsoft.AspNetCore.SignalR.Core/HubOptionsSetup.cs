@@ -22,6 +22,10 @@ namespace Microsoft.AspNetCore.SignalR
 
         public void Configure(HubOptions options)
         {
+            if( options.SupportedProtocols == null)
+            {
+                options.SupportedProtocols = new List<string>();
+            }
             options.SupportedProtocols.AddRange(_protocols);
         }
     }

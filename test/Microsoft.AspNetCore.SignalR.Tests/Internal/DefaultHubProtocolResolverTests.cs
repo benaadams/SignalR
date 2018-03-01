@@ -22,7 +22,7 @@ namespace Microsoft.AspNetCore.SignalR.Common.Protocol.Tests
             new MessagePackHubProtocol()
         };
 
-        private static readonly List<string> AllProtocolNames = new List<string> { DefaultProtocols.JSONProtocol, "messagepack" };
+        private static readonly List<string> AllProtocolNames = new List<string> { "json", "messagepack" };
 
         [Theory]
         [MemberData(nameof(HubProtocols))]
