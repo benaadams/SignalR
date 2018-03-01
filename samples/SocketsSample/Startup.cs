@@ -20,22 +20,8 @@ namespace SocketsSample
         {
             services.AddSockets();
 
-            services.AddSignalR()
-
-            .AddHubOptions<Chat>(options =>
-            {
-                options.KeepAliveInterval = TimeSpan.FromSeconds(5);
-            })
-            .AddHubOptions<DynamicChat>(options =>
-            {
-                options.KeepAliveInterval = TimeSpan.FromSeconds(5);
-            })
-            .AddHubOptions<HubTChat>(options =>
-            {
-                options.KeepAliveInterval = TimeSpan.FromSeconds(5);
-            })
-            .AddHubOptions<Streaming>(options =>
-            {
+            services.AddSignalR(options => {
+                // Faster pings for testing
                 options.KeepAliveInterval = TimeSpan.FromSeconds(5);
             })
 

@@ -16,19 +16,12 @@ namespace Microsoft.Extensions.DependencyInjection
                 .AddJsonProtocol();
         }
 
-        public static ISignalRBuilder AddGlobalHubOptions(this ISignalRBuilder signalrBuilder, Action<HubOptions> options)
+        public static ISignalRBuilder AddSignalR(this IServiceCollection services, Action<HubOptions> options)
         {
-            signalrBuilder.Services.AddSingleton<IConfigureOptions<HubOptions>, HubOptionsSetup>();
-            signalrBuilder.Services.Configure(options);
-            return signalrBuilder;
-        }
-
-        public static ISignalRBuilder AddHubOptions<THub>(this ISignalRBuilder signalrBuilder, Action<HubOptions<THub>> options) where THub : Hub
-        {
-            signalrBuilder.Services.AddSingleton(typeof(IConfigureOptions<HubOptions<THub>>), typeof(HubOptionsSetup<THub>));
-            signalrBuilder.Services.Configure(options);
-
-            return signalrBuilder;
+            services.AddSingleton<IConfigureOptions<HubOptions>, HubOptionsSetup>()
+                .Configure(options);
+            return services.AddSignalR();
+            
         }
     }
 }

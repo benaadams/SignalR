@@ -1327,8 +1327,7 @@ namespace Microsoft.AspNetCore.SignalR.Tests
         {
             var serviceProvider = HubEndPointTestUtils.CreateServiceProvider(services =>
             {
-                services.AddSignalR()
-                .AddGlobalHubOptions(options =>
+                services.AddSignalR(options =>
                 {
                     options.SupportedProtocols.Add("messagepack");
                 });
@@ -1572,10 +1571,6 @@ namespace Microsoft.AspNetCore.SignalR.Tests
             var serviceProvider = HubEndPointTestUtils.CreateServiceProvider(services =>
             {
                 services.AddSignalR()
-                    .AddHubOptions<MethodHub>(options =>
-                    {
-                        options.SupportedProtocols.Add("messagepack");
-                    })
                     .AddMessagePackProtocol(options =>
                     {
                         options.SerializationContext.SerializationMethod = SerializationMethod.Array;
